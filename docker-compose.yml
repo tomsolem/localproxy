@@ -1,0 +1,15 @@
+version: '2'
+services:
+  web-portal:
+    container_name: web-portal
+    image: mbas-portal-002
+  
+  reverse-proxy:
+    container_name: reverse-proxy
+    image: nginx
+    ports:
+     - "443:443"
+    volumes:
+     - ./my.conf:/etc/nginx/conf.d/default.conf
+     - ./localhost.crt:/etc/ssl/certs/localhost.crt
+     - ./localhost.key:/etc/ssl/private/localhost.key
